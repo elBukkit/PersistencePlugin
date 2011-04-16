@@ -1,6 +1,6 @@
 package com.elmakers.mine.bukkit.plugins.persistence;
 
-class PersistenceDefaults
+public class PersistenceDefaults
 {
     public final String   commandListMessage     = "Use: phelp <command>:";
     public final String   dataSavedMessage       = "Data saved.";
