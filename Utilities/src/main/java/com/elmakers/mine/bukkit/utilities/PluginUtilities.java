@@ -133,46 +133,36 @@ public class PluginUtilities
             for (Object listener : listeners)
             {
                 try
-                {
-                    List<CommandSenderData> senders = command.getSenders();
-
-                    if (senders != null)
-                    {
-                        for (CommandSenderData senderData : senders)
+                {       	
+                	// TOOD: Fix command senders, WAY too much of a pain in the ass right now. it keeps braeking :(
+                    // List<CommandSenderData> senders = command.getSenders();
+                	
+                	// For now, hard-coded for Player:
+                	if (sender instanceof Player)
+                	{
+                        try
                         {
-                            Class<?> senderType = senderData.getType();
-                            if (senderType == null)
-                            {
-                                continue;
-                            }
-                            if (!senderType.isAssignableFrom(sender.getClass()))
-                            {
-                                continue;
-                            }
+                            Method customHandler;
+                            customHandler = listener.getClass().getMethod(callbackName, Player.class, String[].class);
                             try
                             {
-                                Method customHandler;
-                                customHandler = listener.getClass().getMethod(callbackName, senderType, String[].class);
-                                try
-                                {
-                                    return (Boolean) customHandler.invoke(listener, senderType.cast(sender), parameters);
-                                }
-                                catch (InvocationTargetException clientEx)
-                                {
-                                    log.severe("Error invoking callback '" + callbackName);
-                                    clientEx.getTargetException().printStackTrace();
-                                    return false;
-                                }
-                                catch (Throwable clientEx)
-                                {
-                                    log.severe("Error invoking trying to invoke callback '" + callbackName);
-                                    clientEx.printStackTrace();
-                                    return false;
-                                }
+                                return (Boolean) customHandler.invoke(listener, (Player)sender, parameters);
                             }
-                            catch (NoSuchMethodException e)
+                            catch (InvocationTargetException clientEx)
                             {
+                                log.severe("Error invoking callback '" + callbackName);
+                                clientEx.getTargetException().printStackTrace();
+                                return false;
                             }
+                            catch (Throwable clientEx)
+                            {
+                                log.severe("Error invoking trying to invoke callback '" + callbackName);
+                                clientEx.printStackTrace();
+                                return false;
+                            }
+                        }
+                        catch (NoSuchMethodException e)
+                        {
                         }
                     }
 
@@ -205,7 +195,7 @@ public class PluginUtilities
                 }
             }
 
-            log.info("Peristence: Can't find callback '" + callbackName + "' for plugin " + plugin.getId());
+            log.info("Persistence: Can't find callback '" + callbackName + "' for plugin " + plugin.getId());
         }
 
         return false;

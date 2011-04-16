@@ -11,7 +11,7 @@
   	</dependencies>
   </dependencyManagement>
   <properties>
-  	<build.version>0.75</build.version>
+  	<build.version>0.76</build.version>
   </properties>
   <repositories>
     <repository>
@@ -63,15 +63,15 @@
     	<scope>compile</scope>
     </dependency>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.persistence.dao</groupId>
-    	<artifactId>Globals</artifactId>
+    	<groupId>com.elmakers.mine.bukkit.data</groupId>
+    	<artifactId>Data</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.data</groupId>
-    	<artifactId>Data</artifactId>
+    	<groupId>com.elmakers.mine.bukkit.persistence.dao</groupId>
+    	<artifactId>Globals</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
     	<scope>compile</scope>

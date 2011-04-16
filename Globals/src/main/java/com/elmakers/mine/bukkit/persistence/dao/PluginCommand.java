@@ -23,33 +23,21 @@ public class PluginCommand extends Persisted implements
         Comparable<PluginCommand>
 {
     private static final String                  indent   = "  ";
-
     private String                               callbackMethod;
+    private List<PluginCommand>                  children;
+    private String                               command;
+    private boolean                              enabled  = true;
+    private int                                  id;
+    private PluginCommand                        parent;
+    private String                               permissionNode;
+    private PermissionType                       permissionType;
+    private PluginData                           plugin;
+    private List<CommandSenderData>              senders;
+    private String                               tooltip;
+    private List<String>                         usage;
 
     // Transient data
     private final HashMap<String, PluginCommand> childMap = new HashMap<String, PluginCommand>();
-
-    private List<PluginCommand>                  children;
-
-    private String                               command;
-
-    private boolean                              enabled  = true;
-
-    private int                                  id;
-
-    private PluginCommand                        parent;
-
-    private String                               permissionNode;
-
-    private PermissionType                       permissionType;
-
-    private PluginData                           plugin;
-
-    private List<CommandSenderData>              senders;
-
-    private String                               tooltip;
-
-    private List<String>                         usage;
 
     /**
      * The default constructor, used by Persistence to create instances.

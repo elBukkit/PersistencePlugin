@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.76
+
+ - Try to fix the !%&%&# "can't find callback" error.
+
 # 0.75
 
  - Version jump.

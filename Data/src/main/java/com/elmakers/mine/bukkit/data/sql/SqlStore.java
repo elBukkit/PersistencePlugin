@@ -231,7 +231,7 @@ public abstract class SqlStore extends DataStore
         }
         catch (SQLException ex)
         {
-            log.severe("Peristence: error creating table: " + ex.getMessage());
+            log.severe("Persistence: error creating table: " + ex.getMessage());
             log.info(createStatement);
         }
 
