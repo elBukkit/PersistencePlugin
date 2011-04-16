@@ -1,4 +1,4 @@
-package com.elmakers.com.bukkit.data.exception;
+package com.elmakers.mine.bukkit.data.exception;
 
 import com.elmakers.mine.bukkit.data.DataField;
 import com.elmakers.mine.bukkit.data.DataRow;
