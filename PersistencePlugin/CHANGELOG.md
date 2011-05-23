@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# 0.77
+
+ - Add an "ops" permission group.
+
 # 0.76
 
  - Try to fix the !%&%&# "can't find callback" error.

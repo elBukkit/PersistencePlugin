@@ -39,6 +39,7 @@ public class PermissionManager implements PermissionHandler
     private static final Yaml                            yaml           = new Yaml(new SafeConstructor());
 
     protected PermissionProfile                          defaultProfile = null;
+    protected PermissionProfile                          opsProfile     = null;
 
     private final List<PermissionHandler>                handlers       = new ArrayList<PermissionHandler>();
 
@@ -106,6 +107,14 @@ public class PermissionManager implements PermissionHandler
         if (defaultProfile != null)
         {
             if (defaultProfile.isSet(permissionNode))
+            {
+                return true;
+            }
+        }
+        
+        if (player.isOp() && opsProfile != null)
+        {
+            if (opsProfile.isSet(permissionNode))
             {
                 return true;
             }
@@ -224,6 +233,10 @@ public class PermissionManager implements PermissionHandler
                 if (profileName.equalsIgnoreCase("default"))
                 {
                     defaultProfile = profile;
+                }
+                if (profileName.equalsIgnoreCase("op"))
+                {
+                    opsProfile = profile;
                 }
                 ProfileData profileData = persistence.get(profileName, ProfileData.class);
                 if (profileData == null)
