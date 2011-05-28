@@ -44,7 +44,6 @@ public class BlockList implements Collection<BlockData>
     protected HashSet<BlockData>   blockMap;
 
     protected int                  passesRemaining  = 1;
-    protected int                  timeRemaining    = 0;
     protected int                  timeToLive       = 0;
 
     public BlockList()
@@ -60,7 +59,6 @@ public class BlockList implements Collection<BlockData>
             add(newBlock);
         }
         timeToLive = other.timeToLive;
-        timeRemaining = other.timeRemaining;
         passesRemaining = other.passesRemaining;
     }
 
@@ -125,22 +123,6 @@ public class BlockList implements Collection<BlockData>
             added = added && add(block);
         }
         return added;
-    }
-
-    public boolean age(int t)
-    {
-        boolean triggered = false;
-        timeRemaining -= t;
-        if (isExpired())
-        {
-            passesRemaining--;
-            if (passesRemaining > 0)
-            {
-                timeRemaining = timeToLive;
-            }
-            triggered = true;
-        }
-        return triggered;
     }
 
     public void clear()
@@ -215,11 +197,6 @@ public class BlockList implements Collection<BlockData>
         return blockList.isEmpty();
     }
 
-    public boolean isExpired()
-    {
-        return timeRemaining <= 0;
-    }
-
     public Iterator<BlockData> iterator()
     {
         if (blockList == null)
@@ -281,11 +258,20 @@ public class BlockList implements Collection<BlockData>
     {
         passesRemaining = repeat;
     }
+    
+    public boolean isComplete()
+    {
+        return passesRemaining <= 0;
+    }
 
     public void setTimeToLive(int ttl)
     {
         timeToLive = ttl;
-        timeRemaining = ttl;
+    }
+    
+    public int getTimeToLive()
+    {
+        return timeToLive;
     }
 
     public int size()
@@ -317,6 +303,7 @@ public class BlockList implements Collection<BlockData>
 
     public boolean undo()
     {
+        passesRemaining--;
         for (BlockData block : this)
         {
             if (!block.undo())
@@ -324,7 +311,7 @@ public class BlockList implements Collection<BlockData>
                 return false;
             }
         }
-
+        
         return true;
     }
 }

@@ -3,14 +3,11 @@ package com.elmakers.mine.bukkit.utilities;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-import com.elmakers.mine.bukkit.persistence.dao.BlockList;
 import com.elmakers.mine.bukkit.persistence.dao.MaterialData;
 import com.elmakers.mine.bukkit.persistence.dao.MaterialList;
 
-public class ReplaceMaterialAction implements BlockRecurseAction
+public class ReplaceMaterialAction extends SimpleBlockAction
 {
-    protected BlockList    blocks      = null;
-
     protected MaterialData replace;
 
     protected MaterialList replaceable = new MaterialList();
@@ -43,11 +40,6 @@ public class ReplaceMaterialAction implements BlockRecurseAction
         replaceable.add(material);
     }
 
-    public BlockList getBlocks()
-    {
-        return blocks;
-    }
-
     public boolean perform(Block block)
     {
         if (replace == null)
@@ -59,14 +51,10 @@ public class ReplaceMaterialAction implements BlockRecurseAction
         {
             block.setType(replace.getType());
             block.setData(replace.getData());
+            super.perform(block);
             return true;
         }
 
         return false;
-    }
-
-    public void setAffectedBlocks(BlockList blocks)
-    {
-        this.blocks = blocks;
     }
 }

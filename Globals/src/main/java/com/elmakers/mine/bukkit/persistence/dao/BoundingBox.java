@@ -186,22 +186,22 @@ public class BoundingBox
 
                     if (destructable == null)
                     {
-                        block.setType(material);
                         if (affected != null)
                         {
                             affected.add(block);
                         }
+                        block.setType(material);
                     }
                     else
                     {
                         Material blockType = block.getType();
                         if (destructable.contains(blockType))
                         {
-                            block.setType(material);
                             if (affected != null)
                             {
                                 affected.add(block);
                             }
+                            block.setType(material);
                         }
                     }
                 }

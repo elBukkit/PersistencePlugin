@@ -8,19 +8,17 @@ import com.elmakers.mine.bukkit.persistence.dao.BlockList;
 
 public class BlockRecurse
 {
-
     protected int maxRecursion = 8;
 
-    public int recurse(Block startBlock, BlockRecurseAction recurseAction)
+    public int recurse(Block startBlock, BlockAction recurseAction)
     {
-        BlockList affectedBlocks = new BlockList();
-        recurse(startBlock, recurseAction, affectedBlocks, null, 0);
-        recurseAction.setAffectedBlocks(affectedBlocks);
-        return affectedBlocks.size();
+        recurse(startBlock, recurseAction, null, 0);
+        return recurseAction.getBlocks().size();
     }
 
-    protected void recurse(Block block, BlockRecurseAction recurseAction, BlockList affectedBlocks, BlockFace nextFace, int rDepth)
+    protected void recurse(Block block, BlockAction recurseAction, BlockFace nextFace, int rDepth)
     {
+        BlockList affectedBlocks = recurseAction.getBlocks();
         if (nextFace != null)
         {
             block = block.getFace(nextFace);
@@ -42,7 +40,7 @@ public class BlockRecurse
             {
                 if (nextFace == null || nextFace != BlockData.getReverseFace(face))
                 {
-                    recurse(block, recurseAction, affectedBlocks, face, rDepth + 1);
+                    recurse(block, recurseAction, face, rDepth + 1);
                 }
             }
         }
