@@ -216,7 +216,7 @@ public class PermissionManager implements PermissionHandler
         }
         catch (Throwable ex)
         {
-            log.log(Level.INFO, "Error reading plugin permissions: ", ex);
+            log.log(Level.INFO, "Error reading plugin permissions for plugin " + pluginName + " - this is probably fine!");
         }
     }
 
