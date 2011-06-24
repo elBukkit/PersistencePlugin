@@ -303,8 +303,10 @@ public class BlockList implements Collection<BlockData>
 
     public boolean undo()
     {
+        if (blockList == null) return true;
+        
         passesRemaining--;
-        for (BlockData block : this)
+        for (BlockData block : blockList)
         {
             if (!block.undo())
             {
