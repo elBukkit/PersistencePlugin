@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 
-import com.elmakers.mine.bukkit.persistence.Persistence;
+import com.elmakers.mine.bukkit.persisted.Persistence;
 import com.elmakers.mine.bukkit.persistence.dao.CommandSenderData;
 import com.elmakers.mine.bukkit.persistence.dao.MaterialList;
 import com.elmakers.mine.bukkit.persistence.dao.Message;
@@ -33,7 +33,7 @@ import com.elmakers.mine.bukkit.persistence.dao.WorldData;
  */
 public class PluginUtilities
 {
-    private static final Logger     log = Persistence.getLogger();
+    private static final Logger     log = Logger.getLogger("Minecraft");
 
     private final Plugin            owner;
 

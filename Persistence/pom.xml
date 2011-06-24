@@ -21,23 +21,23 @@
   </repositories>
   <dependencies>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.data</groupId>
-    	<artifactId>Data</artifactId>
+    	<groupId>org.bukkit</groupId>
+    	<artifactId>bukkit</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
     	<scope>provided</scope>
     </dependency>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.persisted</groupId>
+    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Persisted</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
     	<scope>provided</scope>
     </dependency>
     <dependency>
-    	<groupId>org.bukkit</groupId>
-    	<artifactId>bukkit</artifactId>
+    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
+    	<artifactId>Data</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    	<type>jar</type>
     	<scope>provided</scope>
     </dependency>
   </dependencies>

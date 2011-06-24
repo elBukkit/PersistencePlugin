@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.elmakers.mine.bukkit.utilities</groupId>
+  <groupId>com.elmakers.mine.bukkit.persistence</groupId>
   <artifactId>Utilities</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>elMakers - Bukkit Plugins : Utilities</name>
@@ -21,42 +21,28 @@
   </repositories>
   <dependencies>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
-    	<artifactId>Persistence</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
-    	<scope>provided</scope>
-    </dependency>
-    <dependency>
-    	<groupId>com.elmakers.mine.bukkit.persistence.dao</groupId>
-    	<artifactId>Globals</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
-    	<scope>provided</scope>
-    </dependency>
-    <dependency>
     	<groupId>org.bukkit</groupId>
     	<artifactId>bukkit</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<scope>provided</scope>
     </dependency>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.permissions</groupId>
-    	<artifactId>Permissions</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
-    	<scope>provided</scope>
-    </dependency>
-    <dependency>
-    	<groupId>com.elmakers.mine.bukkit.persisted</groupId>
-    	<artifactId>Persisted</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
-    	<scope>provided</scope>
-    </dependency>
-    <dependency>
     	<groupId>org.bukkit</groupId>
     	<artifactId>craftbukkit</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    	<type>jar</type>
+    	<scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
+    	<artifactId>Globals</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    	<type>jar</type>
+    	<scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
+    	<artifactId>Persisted</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
     	<scope>provided</scope>

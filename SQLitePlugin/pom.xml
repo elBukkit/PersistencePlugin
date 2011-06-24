@@ -29,7 +29,7 @@
     	<scope>compile</scope>
     </dependency>
     <dependency>
-    	<groupId>com.elmakers.mine.bukkit.data</groupId>
+    	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Data</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
