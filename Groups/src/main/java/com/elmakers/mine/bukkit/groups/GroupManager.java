@@ -1,10 +1,20 @@
 package com.elmakers.mine.bukkit.groups;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import com.elmakers.mine.bukkit.permission.dao.ProfileData;
 import com.elmakers.mine.bukkit.persisted.Persistence;
@@ -16,7 +26,8 @@ import com.elmakers.mine.bukkit.utilities.PluginUtilities;
 
 public class GroupManager
 {
-    protected static final Logger   log = Logger.getLogger("Minecraft");
+    protected static final Logger   log             = Logger.getLogger("Minecraft");
+    private static final Yaml       yaml            = new Yaml(new SafeConstructor());
 
     private Message                 addedPlayerToGroupMessage;
 
@@ -321,4 +332,72 @@ public class GroupManager
 
         return true;
     }
+
+    public void loadUsers(File usersFile)
+    {
+        // Import players and groups
+        FileReader loader = null;
+        try
+        {
+            loader = new FileReader(usersFile);
+
+            if (!loadGroups(loader, usersFile))
+            {
+                log.info("Persistence: There's an error with " + usersFile + " - hopefully more info about that above.");
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            log.info("Persistence: Create a plugins/Persistence/" + usersFile + " to use internal groups");
+            loader = null;
+        }
+    }
+    
+    protected boolean loadGroups(Reader reader, File usersFile)
+    {
+        @SuppressWarnings("unchecked")
+        Map<String, Object> map = (Map<String, Object>)yaml.load(reader);
+        
+        Set<String> keys = map.keySet();
+        List<PlayerData> players = new ArrayList<PlayerData>();
+        
+        for (String key : keys)
+        {
+            try
+            {
+                String playerName = key;
+                PlayerData playerData = utilities.getPlayer(playerName);
+              
+                if (playerData != null)
+                {
+                    playerData.clearPermissions();
+                    players.add(playerData);
+                    Object checkList = map.get(key);
+                    if (checkList == null || !(checkList instanceof List))
+                    {
+                        log.warning("Persistence: Player '" + playerName + "' not a list in " + usersFile.getName());
+                    }
+                    else
+                    {
+                        List<Object> playerPermissions = (List<Object>)checkList;
+                        
+                        persistence.put(playerData);
+                    }
+                }
+                else
+                {
+                    log.warning("Persistence: Unknown player '" + playerName + "' in " + usersFile.getName());
+                }
+            }
+            catch (ClassCastException ex)
+            {
+                return false;
+            }
+        }
+        
+        log.info("Persistence: loaded " + players.size() + " players from " + usersFile.getName());
+        
+        return true;
+    }
+
 }

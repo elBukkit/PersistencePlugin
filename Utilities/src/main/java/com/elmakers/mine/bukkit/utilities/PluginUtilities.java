@@ -382,6 +382,18 @@ public class PluginUtilities
 
         return playerData;
     }
+    
+    public PlayerData getPlayer(String playerName)
+    {
+        PlayerData playerData = persistence.get(playerName, PlayerData.class);
+        if (playerData == null)
+        {
+            playerData = new PlayerData(playerName);
+            persistence.put(playerData);
+        }
+
+        return playerData;
+    }
 
     /**
      * Retrieve a player command description based on id.

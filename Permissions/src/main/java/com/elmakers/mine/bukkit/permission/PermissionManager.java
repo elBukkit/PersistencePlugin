@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
@@ -147,7 +148,7 @@ public class PermissionManager implements PermissionHandler
 
             if (!loadProfiles(loader, permissionsFile))
             {
-                log.info("Persistence: There's an error with permissions.yml - hopefully more info about that above.");
+                log.info("Persistence: There's an error with " + permissionsFile + " - hopefully more info about that above.");
             }
         }
         catch (FileNotFoundException ex)
@@ -219,7 +220,7 @@ public class PermissionManager implements PermissionHandler
             log.log(Level.INFO, "Error reading plugin permissions for plugin " + pluginName + " - this is probably fine!");
         }
     }
-
+   
     protected boolean loadProfiles(Reader reader, File permissionsFile)
     {
         PermissionProfile[] profiles;

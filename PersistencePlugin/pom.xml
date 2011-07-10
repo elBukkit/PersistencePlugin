@@ -11,7 +11,7 @@
   	</dependencies>
   </dependencyManagement>
   <properties>
-  	<build.version>0.77</build.version>
+  	<build.version>1.00</build.version>
   </properties>
   <dependencies>
     <dependency>
@@ -26,49 +26,49 @@
     	<artifactId>Data</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Globals</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Groups</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Permissions</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Persisted</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Persistence</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
     <dependency>
     	<groupId>com.elmakers.mine.bukkit.persistence</groupId>
     	<artifactId>Utilities</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<type>jar</type>
-    	<scope>compile</scope>
+    	<scope>import</scope>
     </dependency>
   </dependencies>
   <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
@@ -101,6 +101,7 @@
                   <manifestEntries>
                     <Main-Class>org.bukkit.craftbukkit.Main</Main-Class>
                     <Build-Version>${build.version}</Build-Version>
+                    <Class-Path>Data.jar Globals.jar Groups.jar Permissions.jar Persisted.jar Persistence.jar Utilities.jar</Class-Path>
                   </manifestEntries>
                 </transformer>
               </transformers>

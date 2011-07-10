@@ -47,7 +47,7 @@ public class PersistencePlugin extends JavaPlugin
 
     // TODO : support multiple perm files
     private static final String permissionsFile = "permissions.yml";
-
+    private static final String userFile = "users.yml";
 
     // TODO : Use Persistence.persistenceMap to track one persistence instance
     // per server
@@ -106,6 +106,7 @@ public class PersistencePlugin extends JavaPlugin
         if (groups == null)
         {
             groups = new GroupManager(getServer(), getPersistence(), getUtilities(), getDataFolder());
+            groups.loadUsers(new File(getDataFolder(), userFile));
         }
         return groups;
     }

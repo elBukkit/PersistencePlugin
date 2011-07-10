@@ -97,7 +97,25 @@ public class PlayerData extends Persisted
         superUser = false;
         update(loggedIn);
     }
+    
+    public PlayerData(String playerName)
+    {
+        id = playerName;
+        firstLogin = null;
+        lastDisconnect = null;
+        superUser = false;
+    }
 
+    public void clearPermissions()
+    {
+        groupMap = new HashMap<String, Group>();
+        groups = new ArrayList<Group>();
+        denyMap = new HashMap<String, ProfileData>();
+        deny = new ArrayList<ProfileData>();
+        grantMap = new HashMap<String, ProfileData>();
+        grant = new ArrayList<ProfileData>();
+    }
+    
     public void addToGroup(Group group)
     {
         if (groupMap == null)
